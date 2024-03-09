@@ -3,7 +3,7 @@
 
 Start the system using:
 
-docker compose --profile pr od up --build
+docker compose --profile prod up --build
 
 Access frontend from:
 
