@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+<h1>Task Tracker</h1>
+    <div>
+        <h2>Check-in Task</h2>
+        User Name: <input type="text" id="checkinUserName"><br>
+        Task Name: <input type="text" id="checkinTaskName"><br>
+        <button onclick="checkinTask()">Check-in Task</button>
+        <p id="checkinResult"></p>
+    </div>
+
+    <div>
+        <h2>Check-out Task</h2>
+        User Name: <input type="text" id="checkoutUserName"><br>
+        <button onclick="checkoutTask()">Check-out Task</button>
+        <p id="checkoutResult"></p>
+    </div>
+
+    <div>
+        <h2>Generate Report</h2>
+        <button onclick="generateReport()">Generate Report</button>
+        <pre id="reportResult"></pre>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

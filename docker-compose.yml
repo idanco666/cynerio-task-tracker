@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  task-tracker:
+    hostname: task-tracker
+    build:
+      context: .
+      dockerfile: task_tracker/Dockerfile
+    networks:
+      - default
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres
+    profiles:
+      - prod
+      - testing
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: tasktracker
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    profiles:
+      - prod
+      - testing
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - default
+    depends_on:
+      - task-tracker
+    profiles:
+      - prod
+  tests:
+    build:
+      context: .
+      dockerfile: tests/Dockerfile
+    networks:
+      - default
+    depends_on:
+      - postgres
+      - task-tracker
+    profiles:
+     - testing
+
+networks:
+  default:
+    driver: bridge
